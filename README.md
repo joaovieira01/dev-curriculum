@@ -2,7 +2,7 @@
 
 Uma aplicação web moderna e completa para criação de currículos profissionais com preview em tempo real e exportação para PDF otimizada para sistemas ATS (Applicant Tracking Systems).
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://automated-cv-website.vercel.app)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://dev-curriculum.vercel.app)
 [![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/y2hRYgJzaSL)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -14,7 +14,7 @@ Uma aplicação web moderna e completa para criação de currículos profissiona
 - **Design Responsivo**: Interface adaptável para desktop, tablet e mobile
 - **Preview em Tempo Real**: Visualização instantânea das alterações
 - **Modo Toggle**: Alternar entre formulário e preview para melhor experiência
-- **Interface Limpa**: Design moderno com componentes shadcn/ui
+- **Interface Moderna**: Design colorido e profissional com gradientes e animações
 
 ### 📝 **Seções Completas do Currículo**
 - **Dados Pessoais**: Nome, título, contatos e redes sociais
@@ -52,7 +52,7 @@ Uma aplicação web moderna e completa para criação de currículos profissiona
 
 ## 🎯 Demonstração
 
-**[🚀 Acesse a Aplicação Online](https://automated-cv-website.vercel.app)**
+**[🚀 Acesse a Aplicação Online](https://dev-curriculum.vercel.app)**
 
 A aplicação oferece uma experiência completa de criação de currículos:
 
@@ -64,7 +64,7 @@ A aplicação oferece uma experiência completa de criação de currículos:
 ## 🚀 Como Usar
 
 ### 1. **Acesse a Aplicação**
-Visite: [https://automated-cv-website.vercel.app](https://automated-cv-website.vercel.app)
+Visite: [https://dev-curriculum.vercel.app](https://dev-curriculum.vercel.app)
 
 ### 2. **Preencha suas Informações**
 - Complete os dados pessoais
@@ -114,10 +114,10 @@ Visite: [https://automated-cv-website.vercel.app](https://automated-cv-website.v
 - Palavras-chave otimizadas
 
 ### **🎨 Design Profissional**
-- Layout limpo e moderno
+- Layout moderno com gradientes
 - Tipografia otimizada
 - Espaçamento consistente
-- Cores profissionais
+- Cores profissionais e vibrantes
 
 ### **⚡ Performance**
 - Carregamento instantâneo
@@ -209,7 +209,7 @@ Encontrou um bug ou tem uma sugestão?
 <div align="center">
   <p>Feito com ❤️ para ajudar profissionais a criarem currículos incríveis</p>
   <p>
-    <a href="https://automated-cv-website.vercel.app">🚀 Experimente Agora</a> •
+    <a href="https://dev-curriculum.vercel.app">🚀 Experimente Agora</a> •
     <a href="#-funcionalidades">📋 Funcionalidades</a> •
     <a href="#-como-usar">📖 Como Usar</a> •
     <a href="#-contribuindo">🤝 Contribuir</a>
