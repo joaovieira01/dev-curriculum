@@ -2,7 +2,7 @@
 
 Uma aplicação web moderna e completa para criação de currículos profissionais com preview em tempo real e exportação para PDF otimizada para sistemas ATS (Applicant Tracking Systems).
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/joaovieira01s-projects/v0-automated-cv-website)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://automated-cv-website.vercel.app)
 [![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/y2hRYgJzaSL)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -30,7 +30,7 @@ Uma aplicação web moderna e completa para criação de currículos profissiona
 - **Compatibilidade ATS**: Estrutura otimizada para sistemas de recrutamento
 - **Exportação PDF**: Download direto via navegador com formatação profissional
 - **Título Dinâmico**: Nome do arquivo PDF personalizado automaticamente
-- **Dados de Exemplo**: Conteúdo pré-preenchido para demonstração
+- **Formulário Limpo**: Interface em branco para criação personalizada
 - **Validação de Campos**: Campos obrigatórios e validação de dados
 - **Gerenciamento de Estado**: Adição/remoção dinâmica de seções
 
@@ -52,7 +52,7 @@ Uma aplicação web moderna e completa para criação de currículos profissiona
 
 ## 🎯 Demonstração
 
-**[🚀 Acesse a Aplicação Online](https://vercel.com/joaovieira01s-projects/v0-automated-cv-website)**
+**[🚀 Acesse a Aplicação Online](https://automated-cv-website.vercel.app)**
 
 A aplicação oferece uma experiência completa de criação de currículos:
 
@@ -64,7 +64,7 @@ A aplicação oferece uma experiência completa de criação de currículos:
 ## 🚀 Como Usar
 
 ### 1. **Acesse a Aplicação**
-Visite: [https://vercel.com/joaovieira01s-projects/v0-automated-cv-website](https://vercel.com/joaovieira01s-projects/v0-automated-cv-website)
+Visite: [https://automated-cv-website.vercel.app](https://automated-cv-website.vercel.app)
 
 ### 2. **Preencha suas Informações**
 - Complete os dados pessoais
@@ -209,7 +209,7 @@ Encontrou um bug ou tem uma sugestão?
 <div align="center">
   <p>Feito com ❤️ para ajudar profissionais a criarem currículos incríveis</p>
   <p>
-    <a href="https://vercel.com/joaovieira01s-projects/v0-automated-cv-website">🚀 Experimente Agora</a> •
+    <a href="https://automated-cv-website.vercel.app">🚀 Experimente Agora</a> •
     <a href="#-funcionalidades">📋 Funcionalidades</a> •
     <a href="#-como-usar">📖 Como Usar</a> •
     <a href="#-contribuindo">🤝 Contribuir</a>

@@ -15,7 +15,7 @@
     "tailwind",
     "shadcn"
   ],
-  "homepage": "https://vercel.com/joaovieira01s-projects/v0-automated-cv-website",
+  "homepage": "https://automated-cv-website.vercel.app",
   "bugs": {
     "url": "https://github.com/joaovieira01/automated-cv-website/issues"
   },
