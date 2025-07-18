@@ -74,134 +74,26 @@ export default function ResumeBuilder() {
   const resumeRef = useRef<HTMLDivElement>(null) // Ref para o elemento do currículo
 
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
-    fullName: "João Silva",
-    title: "Desenvolvedor Full Stack Sênior",
-    email: "joao.silva@example.com",
-    phone: "(11) 98765-4321",
-    location: "São Paulo, SP",
-    linkedin: "linkedin.com/in/joaosilva",
-    summary:
-      "Desenvolvedor Full Stack com mais de 8 anos de experiência na criação e manutenção de aplicações web escaláveis. Especialista em React, Node.js e arquiteturas de microsserviços. Apaixonado por resolver problemas complexos e construir produtos de alta qualidade.",
+    fullName: "",
+    title: "",
+    email: "",
+    phone: "",
+    location: "",
+    linkedin: "",
+    summary: "",
   })
 
-  const [experiences, setExperiences] = useState<Experience[]>([
-    {
-      id: "1",
-      company: "Tech Solutions Ltda.",
-      position: "Desenvolvedor Full Stack Sênior",
-      startDate: "2021-03",
-      endDate: "",
-      current: true,
-      description:
-        "Liderança técnica de equipe de 5 desenvolvedores no desenvolvimento de uma plataforma SaaS. Implementação de novas funcionalidades usando React, Node.js e PostgreSQL. Otimização de performance, reduzindo o tempo de carregamento em 30%.",
-    },
-    {
-      id: "2",
-      company: "Inovação Digital S.A.",
-      position: "Desenvolvedor Web Pleno",
-      startDate: "2018-01",
-      endDate: "2021-02",
-      current: false,
-      description:
-        "Desenvolvimento de interfaces de usuário responsivas com Angular e integração com APIs RESTful. Participação no ciclo completo de desenvolvimento de software, desde o design até a implantação.",
-    },
-  ])
+  const [experiences, setExperiences] = useState<Experience[]>([])
 
-  const [education, setEducation] = useState<Education[]>([
-    {
-      id: "1",
-      institution: "Universidade Federal de São Paulo (UNIFESP)",
-      degree: "Bacharelado",
-      field: "Ciência da Computação",
-      startDate: "2014-02",
-      endDate: "2017-12",
-      current: false,
-    },
-    {
-      id: "2",
-      institution: "Udemy",
-      degree: "Certificado",
-      field: "Desenvolvimento Web Completo",
-      startDate: "2017-08",
-      endDate: "2017-11",
-      current: false,
-    },
-  ])
+  const [education, setEducation] = useState<Education[]>([])
 
-  const [projects, setProjects] = useState<Project[]>([
-    {
-      id: "1",
-      name: "Plataforma de Gerenciamento de Tarefas",
-      description:
-        "Aplicação web para organização de tarefas pessoais e em equipe, com funcionalidades de arrastar e soltar, prazos e notificações.",
-      technologies: "React, Redux, Node.js, Express, MongoDB, Socket.IO",
-      link: "https://github.com/joaosilva/task-manager-platform",
-    },
-    {
-      id: "2",
-      name: "E-commerce de Livros Online",
-      description:
-        "Loja virtual completa com carrinho de compras, sistema de pagamento integrado e painel administrativo para gerenciamento de produtos e pedidos.",
-      technologies: "Next.js, TypeScript, Stripe API, PostgreSQL, Tailwind CSS",
-      link: "https://github.com/joaosilva/book-ecommerce",
-    },
-  ])
+  const [projects, setProjects] = useState<Project[]>([])
 
-  const [courses, setCourses] = useState<Course[]>([
-    {
-      id: "1",
-      name: "AWS Certified Solutions Architect",
-      institution: "Amazon Web Services",
-      completionDate: "2023-06",
-      duration: "40 horas",
-      certificate: "https://aws.amazon.com/certification/",
-    },
-    {
-      id: "2",
-      name: "Scrum Master Certification",
-      institution: "Scrum Alliance",
-      completionDate: "2022-11",
-      duration: "16 horas",
-      certificate: "",
-    },
-  ])
+  const [courses, setCourses] = useState<Course[]>([])
 
-  const [languages, setLanguages] = useState<Language[]>([
-    {
-      id: "1",
-      language: "Português",
-      level: "Nativo",
-    },
-    {
-      id: "2",
-      language: "Inglês",
-      level: "Avançado",
-    },
-    {
-      id: "3",
-      language: "Espanhol",
-      level: "Intermediário",
-    },
-  ])
+  const [languages, setLanguages] = useState<Language[]>([])
 
-  const [skills, setSkills] = useState<string[]>([
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Express.js",
-    "Python",
-    "Django",
-    "PostgreSQL",
-    "MongoDB",
-    "Docker",
-    "AWS",
-    "Git",
-    "Metodologias Ágeis",
-    "Comunicação",
-    "Resolução de Problemas",
-  ])
+  const [skills, setSkills] = useState<string[]>([])
   const [newSkill, setNewSkill] = useState("")
 
   // Atualizar o título da página dinamicamente

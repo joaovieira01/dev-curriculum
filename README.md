@@ -50,16 +50,16 @@ Uma aplicação web moderna e completa para criação de currículos profissiona
 - **Ícones**: Lucide React
 - **Deployment**: Vercel
 
-## 🎨 Capturas de Tela
+## 🎯 Demonstração
 
-### Interface Principal
-![Interface do Criador de Currículos](https://via.placeholder.com/800x600/f3f4f6/1f2937?text=Interface+Principal)
+**[🚀 Acesse a Aplicação Online](https://vercel.com/joaovieira01s-projects/v0-automated-cv-website)**
 
-### Preview do Currículo
-![Preview em Tempo Real](https://via.placeholder.com/800x600/ffffff/374151?text=Preview+do+Currículo)
+A aplicação oferece uma experiência completa de criação de currículos:
 
-### Versão Mobile
-![Versão Responsiva](https://via.placeholder.com/400x800/f3f4f6/1f2937?text=Versão+Mobile)
+- **Interface Intuitiva**: Formulários organizados por seções com validação em tempo real
+- **Preview Dinâmico**: Visualização instantânea das alterações no layout profissional
+- **Design Responsivo**: Experiência otimizada para desktop, tablet e dispositivos móveis
+- **Exportação Profissional**: PDF formatado e compatível com sistemas ATS
 
 ## 🚀 Como Usar
 
