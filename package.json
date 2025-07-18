@@ -1,15 +1,42 @@
 {
-  "name": "my-v0-project",
-  "version": "0.1.0",
+  "name": "automated-cv-website",
+  "version": "1.0.0",
   "private": true,
+  "description": "Uma aplicação web moderna para criação de currículos profissionais com preview em tempo real e exportação PDF otimizada para ATS",
+  "keywords": [
+    "curriculum",
+    "resume",
+    "cv",
+    "pdf",
+    "ats",
+    "professional",
+    "nextjs",
+    "typescript",
+    "tailwind",
+    "shadcn"
+  ],
+  "homepage": "https://vercel.com/joaovieira01s-projects/v0-automated-cv-website",
+  "bugs": {
+    "url": "https://github.com/joaovieira01/automated-cv-website/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaovieira01/automated-cv-website.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "João Vieira",
+    "email": "joao.vieira@example.com",
+    "url": "https://github.com/joaovieira01"
+  },
   "scripts": {
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "latest",
     "@radix-ui/react-alert-dialog": "latest",
     "@radix-ui/react-aspect-ratio": "latest",
@@ -37,11 +64,10 @@
     "@radix-ui/react-toggle": "latest",
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
-    "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "latest",
-    "date-fns": "4.1.0",
+    "date-fns": "^4.1.0",
     "embla-carousel-react": "latest",
     "input-otp": "latest",
     "lucide-react": "^0.454.0",
@@ -56,15 +82,20 @@
     "sonner": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "latest",
-    "zod": "^3.24.1"
+    "vaul": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "15.1.0",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }

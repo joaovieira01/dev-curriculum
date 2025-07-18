@@ -997,13 +997,15 @@ export default function ResumeBuilder() {
                     {languages.some((lang) => lang.language || lang.level) && (
                       <div>
                         <h2 className="text-lg font-semibold text-gray-900 mb-3">Idiomas</h2>
-                        <div className="grid grid-cols-2 gap-2">
+                        <div className="space-y-2">
                           {languages
                             .filter((lang) => lang.language || lang.level)
                             .map((language) => (
-                              <div key={language.id} className="flex justify-between">
-                                <span className="text-gray-900">{language.language || "Idioma"}</span>
-                                <span className="text-gray-600 text-sm">{language.level || "Nível"}</span>
+                              <div key={language.id} className="flex justify-between items-center py-1">
+                                <span className="font-medium text-gray-900">{language.language || "Idioma"}</span>
+                                <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+                                  {language.level || "Nível"}
+                                </span>
                               </div>
                             ))}
                         </div>
