@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Plus, Trash2, Download, Eye, EyeOff } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 // Importações para PDF
 // - import html2canvas from "html2canvas"
@@ -51,6 +52,21 @@ interface Project {
   description: string
   technologies: string
   link: string
+}
+
+interface Course {
+  id: string
+  name: string
+  institution: string
+  completionDate: string
+  duration: string
+  certificate: string
+}
+
+interface Language {
+  id: string
+  language: string
+  level: string
 }
 
 export default function ResumeBuilder() {
@@ -131,6 +147,43 @@ export default function ResumeBuilder() {
     },
   ])
 
+  const [courses, setCourses] = useState<Course[]>([
+    {
+      id: "1",
+      name: "AWS Certified Solutions Architect",
+      institution: "Amazon Web Services",
+      completionDate: "2023-06",
+      duration: "40 horas",
+      certificate: "https://aws.amazon.com/certification/",
+    },
+    {
+      id: "2",
+      name: "Scrum Master Certification",
+      institution: "Scrum Alliance",
+      completionDate: "2022-11",
+      duration: "16 horas",
+      certificate: "",
+    },
+  ])
+
+  const [languages, setLanguages] = useState<Language[]>([
+    {
+      id: "1",
+      language: "Português",
+      level: "Nativo",
+    },
+    {
+      id: "2",
+      language: "Inglês",
+      level: "Avançado",
+    },
+    {
+      id: "3",
+      language: "Espanhol",
+      level: "Intermediário",
+    },
+  ])
+
   const [skills, setSkills] = useState<string[]>([
     "JavaScript",
     "TypeScript",
@@ -199,6 +252,26 @@ export default function ResumeBuilder() {
     setEducation(education.map((edu) => (edu.id === id ? { ...edu, [field]: value } : edu)))
   }
 
+  const addCourse = () => {
+    const newCourse: Course = {
+      id: Date.now().toString(),
+      name: "",
+      institution: "",
+      completionDate: "",
+      duration: "",
+      certificate: "",
+    }
+    setCourses([...courses, newCourse])
+  }
+
+  const removeCourse = (id: string) => {
+    setCourses(courses.filter((course) => course.id !== id))
+  }
+
+  const updateCourse = (id: string, field: keyof Course, value: string) => {
+    setCourses(courses.map((course) => (course.id === id ? { ...course, [field]: value } : course)))
+  }
+
   const addProject = () => {
     const newProject: Project = {
       id: Date.now().toString(),
@@ -216,6 +289,23 @@ export default function ResumeBuilder() {
 
   const updateProject = (id: string, field: keyof Project, value: string) => {
     setProjects(projects.map((proj) => (proj.id === id ? { ...proj, [field]: value } : proj)))
+  }
+
+  const addLanguage = () => {
+    const newLanguage: Language = {
+      id: Date.now().toString(),
+      language: "",
+      level: "",
+    }
+    setLanguages([...languages, newLanguage])
+  }
+
+  const removeLanguage = (id: string) => {
+    setLanguages(languages.filter((lang) => lang.id !== id))
+  }
+
+  const updateLanguage = (id: string, field: keyof Language, value: string) => {
+    setLanguages(languages.map((lang) => (lang.id === id ? { ...lang, [field]: value } : lang)))
   }
 
   const addSkill = () => {
@@ -239,6 +329,8 @@ export default function ResumeBuilder() {
   const handleDownloadPdf = () => {
     window.print()
   }
+
+  const languageLevels = ["Básico", "Intermediário", "Avançado", "Fluente", "Nativo"]
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -514,6 +606,138 @@ export default function ResumeBuilder() {
               </CardContent>
             </Card>
 
+            {/* Cursos Complementares */}
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle>Cursos Complementares</CardTitle>
+                    <CardDescription>Certificações e cursos relevantes</CardDescription>
+                  </div>
+                  <Button onClick={addCourse} size="sm">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Adicionar
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {courses.map((course, index) => (
+                  <div key={course.id} className="border rounded-lg p-4 space-y-4">
+                    <div className="flex justify-between items-center">
+                      <h4 className="font-medium">Curso {index + 1}</h4>
+                      {courses.length > 1 && (
+                        <Button onClick={() => removeCourse(course.id)} variant="outline" size="sm">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label>Nome do Curso</Label>
+                        <Input
+                          value={course.name}
+                          onChange={(e) => updateCourse(course.id, "name", e.target.value)}
+                          placeholder="Nome do curso ou certificação"
+                        />
+                      </div>
+                      <div>
+                        <Label>Instituição</Label>
+                        <Input
+                          value={course.institution}
+                          onChange={(e) => updateCourse(course.id, "institution", e.target.value)}
+                          placeholder="Nome da instituição"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label>Data de Conclusão</Label>
+                        <Input
+                          type="month"
+                          value={course.completionDate}
+                          onChange={(e) => updateCourse(course.id, "completionDate", e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label>Duração</Label>
+                        <Input
+                          value={course.duration}
+                          onChange={(e) => updateCourse(course.id, "duration", e.target.value)}
+                          placeholder="Ex: 40 horas, 3 meses"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label>Link do Certificado (opcional)</Label>
+                      <Input
+                        value={course.certificate}
+                        onChange={(e) => updateCourse(course.id, "certificate", e.target.value)}
+                        placeholder="https://certificado.com"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            {/* Idiomas */}
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <CardTitle>Idiomas</CardTitle>
+                    <CardDescription>Idiomas que você domina</CardDescription>
+                  </div>
+                  <Button onClick={addLanguage} size="sm">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Adicionar
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {languages.map((language, index) => (
+                  <div key={language.id} className="border rounded-lg p-4 space-y-4">
+                    <div className="flex justify-between items-center">
+                      <h4 className="font-medium">Idioma {index + 1}</h4>
+                      {languages.length > 1 && (
+                        <Button onClick={() => removeLanguage(language.id)} variant="outline" size="sm">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label>Idioma</Label>
+                        <Input
+                          value={language.language}
+                          onChange={(e) => updateLanguage(language.id, "language", e.target.value)}
+                          placeholder="Ex: Inglês, Espanhol"
+                        />
+                      </div>
+                      <div>
+                        <Label>Nível</Label>
+                        <Select
+                          value={language.level}
+                          onValueChange={(value) => updateLanguage(language.id, "level", value)}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Selecione o nível" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {languageLevels.map((level) => (
+                              <SelectItem key={level} value={level}>
+                                {level}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
             {/* Habilidades */}
             <Card>
               <CardHeader>
@@ -724,6 +948,62 @@ export default function ResumeBuilder() {
                                     )}
                                   </div>
                                 </div>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Cursos Complementares */}
+                    {courses.some((course) => course.name || course.institution) && (
+                      <div>
+                        <h2 className="text-lg font-semibold text-gray-900 mb-3">Cursos Complementares</h2>
+                        <div className="space-y-3">
+                          {courses
+                            .filter((course) => course.name || course.institution)
+                            .map((course) => (
+                              <div key={course.id}>
+                                <div className="flex justify-between items-start">
+                                  <div>
+                                    <h3 className="font-medium text-gray-900">{course.name || "Nome do Curso"}</h3>
+                                    <p className="text-gray-600">{course.institution || "Instituição"}</p>
+                                    {course.duration && (
+                                      <p className="text-gray-500 text-xs">Duração: {course.duration}</p>
+                                    )}
+                                  </div>
+                                  <div className="text-right text-gray-500 text-xs">
+                                    {course.completionDate && (
+                                      <span>
+                                        {new Date(course.completionDate + "-01").toLocaleDateString("pt-BR", {
+                                          month: "short",
+                                          year: "numeric",
+                                        })}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                                {course.certificate && (
+                                  <p className="text-blue-600 text-xs mt-1">
+                                    <strong>Certificado:</strong> {course.certificate}
+                                  </p>
+                                )}
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Idiomas */}
+                    {languages.some((lang) => lang.language || lang.level) && (
+                      <div>
+                        <h2 className="text-lg font-semibold text-gray-900 mb-3">Idiomas</h2>
+                        <div className="grid grid-cols-2 gap-2">
+                          {languages
+                            .filter((lang) => lang.language || lang.level)
+                            .map((language) => (
+                              <div key={language.id} className="flex justify-between">
+                                <span className="text-gray-900">{language.language || "Idioma"}</span>
+                                <span className="text-gray-600 text-sm">{language.level || "Nível"}</span>
                               </div>
                             ))}
                         </div>

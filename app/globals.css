@@ -93,6 +93,7 @@ body {
   }
 }
 
+/* Esconder elementos que não devem aparecer na impressão */
 @media print {
   body {
     margin: 0;
@@ -100,7 +101,47 @@ body {
     background: white !important;
   }
 
-  .no-print {
+  /* Esconder todos os elementos que não devem aparecer no PDF */
+  .no-print,
+  [data-v0-t],
+  [data-v0-t] *,
+  .v0-watermark,
+  .v0-logo,
+  .vercel-logo,
+  .watermark,
+  .logo,
+  button[aria-label*="close"],
+  button[aria-label*="dismiss"],
+  .close-button,
+  .dismiss-button,
+  [role="dialog"],
+  [role="alertdialog"],
+  .modal,
+  .popup,
+  .overlay,
+  .toast,
+  .notification,
+  .banner,
+  .header-banner,
+  .footer-banner,
+  .advertisement,
+  .ad,
+  .sidebar,
+  .navigation,
+  .nav,
+  .menu,
+  .toolbar,
+  .floating,
+  .fixed,
+  .sticky {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Esconder elementos posicionados de forma absoluta ou fixa que podem ser logos/watermarks */
+  *[style*="position: fixed"],
+  *[style*="position: absolute"] {
     display: none !important;
   }
 
@@ -176,4 +217,29 @@ body {
   .resume-printable-area > div {
     page-break-inside: avoid;
   }
+
+  /* Forçar cores em preto para impressão */
+  * {
+    color: black !important;
+    background: white !important;
+  }
+
+  .resume-printable-area .bg-gray-100 {
+    background: #f5f5f5 !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+
+  .resume-printable-area .text-blue-600 {
+    color: #0066cc !important;
+  }
+}
+
+/* Esconder elementos específicos do v0 que podem aparecer */
+[data-v0-t="watermark"],
+[data-v0-t="logo"],
+[class*="watermark"],
+[class*="logo"],
+[id*="watermark"],
+[id*="logo"] {
+  display: none !important;
 }
