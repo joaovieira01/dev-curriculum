@@ -74,9 +74,16 @@
     display: none !important;
   }
 
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+  }
+
   .resume-printable-area {
     margin: 0 !important;
-    padding: 20px !important;
+    padding: 0.5in !important;
     box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
@@ -85,83 +92,29 @@
     font-family: "Times New Roman", serif !important;
     font-size: 12pt !important;
     line-height: 1.4 !important;
+    max-width: none !important;
+    min-height: none !important;
   }
 
-  /* Otimizações para ATS */
-  .resume-printable-area h1 {
-    font-size: 18pt !important;
-    font-weight: bold !important;
-    margin-bottom: 8pt !important;
+  /* Garantir que todos os estilos inline sejam preservados */
+  .resume-printable-area * {
     color: black !important;
+    background: transparent !important;
   }
 
-  .resume-printable-area h2 {
-    font-size: 14pt !important;
-    font-weight: bold !important;
-    margin-top: 12pt !important;
-    margin-bottom: 6pt !important;
-    color: black !important;
-    text-transform: uppercase !important;
-    border-left: none !important;
-    padding-left: 0 !important;
+  /* Configurações de página */
+  @page {
+    margin: 0.5in;
+    size: A4;
   }
 
-  .resume-printable-area h3 {
-    font-size: 12pt !important;
-    font-weight: bold !important;
-    margin-bottom: 2pt !important;
-    color: black !important;
-  }
-
-  .resume-printable-area h4 {
-    font-size: 12pt !important;
-    font-weight: normal !important;
-    font-style: italic !important;
-    color: black !important;
-  }
-
-  .resume-printable-area p {
-    margin-bottom: 6pt !important;
-    color: black !important;
-  }
-
+  /* Garantir quebras de página adequadas */
   .resume-printable-area section {
-    margin-bottom: 12pt !important;
-    page-break-inside: avoid !important;
+    page-break-inside: avoid;
   }
 
   .resume-printable-area article {
-    margin-bottom: 8pt !important;
-    border-left: none !important;
-    padding-left: 0 !important;
-  }
-
-  /* Remover elementos visuais que podem confundir ATS */
-  .resume-printable-area .bg-gradient-to-r,
-  .resume-printable-area .bg-gray-100,
-  .resume-printable-area .border-l-4,
-  .resume-printable-area .border-l-2,
-  .resume-printable-area .rounded-full,
-  .resume-printable-area .rounded-lg {
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-
-  /* Simplificar layout para ATS */
-  .resume-printable-area .flex {
-    display: block !important;
-  }
-
-  .resume-printable-area .grid {
-    display: block !important;
-  }
-
-  .resume-printable-area time {
-    display: inline !important;
-    background: transparent !important;
-    padding: 0 !important;
-    color: black !important;
+    page-break-inside: avoid;
   }
 
   /* Garantir que o texto seja selecionável */
@@ -172,15 +125,16 @@
     user-select: text !important;
   }
 
-  /* Configurações de página */
-  @page {
-    margin: 0.5in;
-    size: A4;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
+  /* Remover elementos que podem confundir ATS */
+  .resume-printable-area .bg-gradient-to-r,
+  .resume-printable-area .bg-gray-100,
+  .resume-printable-area .border-l-4,
+  .resume-printable-area .border-l-2,
+  .resume-printable-area .rounded-full,
+  .resume-printable-area .rounded-lg {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
   }
 }
 

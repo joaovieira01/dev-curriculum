@@ -1035,68 +1035,201 @@ export default function ResumeBuilder() {
                 <CardContent className="print:p-0 p-0">
                   <div
                     ref={resumeRef}
-                    className="bg-white p-8 border rounded-b-lg shadow-sm space-y-6 text-sm resume-printable-area"
+                    className="bg-white p-8 border rounded-b-lg shadow-sm resume-printable-area"
+                    style={{
+                      fontFamily: '"Times New Roman", serif',
+                      fontSize: "12pt",
+                      lineHeight: "1.4",
+                      color: "black",
+                      maxWidth: "8.5in",
+                      minHeight: "11in",
+                    }}
                   >
-                    {/* Cabeçalho - Otimizado para ATS */}
-                    <header className="text-center border-b-2 border-gray-200 pb-6">
-                      <h1 className="text-3xl font-bold text-gray-900 mb-2">{personalInfo.fullName || "Seu Nome"}</h1>
-                      <h2 className="text-xl text-gray-600 mb-4">{personalInfo.title || "Título Profissional"}</h2>
-                      <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
-                        {personalInfo.email && <span>Email: {personalInfo.email}</span>}
-                        {personalInfo.phone && <span>Telefone: {personalInfo.phone}</span>}
-                        {personalInfo.location && <span>Localização: {personalInfo.location}</span>}
-                        {personalInfo.linkedin && <span>LinkedIn: {personalInfo.linkedin}</span>}
+                    {/* Cabeçalho - Estruturado para ATS */}
+                    <header className="text-center mb-6 pb-4" style={{ borderBottom: "2px solid #000" }}>
+                      <h1
+                        style={{
+                          fontSize: "18pt",
+                          fontWeight: "bold",
+                          marginBottom: "4pt",
+                          textTransform: "uppercase",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {personalInfo.fullName || "SEU NOME COMPLETO"}
+                      </h1>
+                      <h2
+                        style={{
+                          fontSize: "14pt",
+                          fontWeight: "normal",
+                          marginBottom: "8pt",
+                          fontStyle: "italic",
+                        }}
+                      >
+                        {personalInfo.title || "Título Profissional"}
+                      </h2>
+
+                      {/* Informações de Contato - Estruturadas */}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          justifyContent: "center",
+                          gap: "20px",
+                          fontSize: "11pt",
+                          marginTop: "8pt",
+                        }}
+                      >
+                        {personalInfo.email && (
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <strong>Email:</strong>&nbsp;{personalInfo.email}
+                          </div>
+                        )}
+                        {personalInfo.phone && (
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <strong>Telefone:</strong>&nbsp;{personalInfo.phone}
+                          </div>
+                        )}
+                        {personalInfo.location && (
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <strong>Endereço:</strong>&nbsp;{personalInfo.location}
+                          </div>
+                        )}
+                        {personalInfo.linkedin && (
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <strong>LinkedIn:</strong>&nbsp;{personalInfo.linkedin}
+                          </div>
+                        )}
                       </div>
                     </header>
 
                     {/* Resumo Profissional */}
                     {personalInfo.summary && (
-                      <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-3 border-l-4 border-blue-500 pl-3">
+                      <section style={{ marginBottom: "16pt" }}>
+                        <h2
+                          style={{
+                            fontSize: "14pt",
+                            fontWeight: "bold",
+                            marginBottom: "6pt",
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid #000",
+                            paddingBottom: "2pt",
+                          }}
+                        >
                           RESUMO PROFISSIONAL
                         </h2>
-                        <p className="text-gray-700 leading-relaxed">{personalInfo.summary}</p>
+                        <p
+                          style={{
+                            textAlign: "justify",
+                            marginBottom: "0",
+                            fontSize: "11pt",
+                          }}
+                        >
+                          {personalInfo.summary}
+                        </p>
                       </section>
                     )}
 
                     {/* Experiência Profissional */}
                     {experiences.some((exp) => exp.company || exp.position) && (
-                      <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-4 border-l-4 border-green-500 pl-3">
+                      <section style={{ marginBottom: "16pt" }}>
+                        <h2
+                          style={{
+                            fontSize: "14pt",
+                            fontWeight: "bold",
+                            marginBottom: "8pt",
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid #000",
+                            paddingBottom: "2pt",
+                          }}
+                        >
                           EXPERIÊNCIA PROFISSIONAL
                         </h2>
-                        <div className="space-y-5">
+                        <div style={{ marginLeft: "0" }}>
                           {experiences
                             .filter((exp) => exp.company || exp.position)
-                            .map((exp) => (
-                              <article key={exp.id} className="border-l-2 border-gray-200 pl-4">
-                                <div className="flex justify-between items-start mb-2">
-                                  <div>
-                                    <h3 className="font-bold text-gray-900 text-lg">{exp.position || "Cargo"}</h3>
-                                    <h4 className="text-gray-600 font-medium">{exp.company || "Empresa"}</h4>
+                            .map((exp, index) => (
+                              <article
+                                key={exp.id}
+                                style={{
+                                  marginBottom:
+                                    index < experiences.filter((e) => e.company || e.position).length - 1
+                                      ? "12pt"
+                                      : "0",
+                                  pageBreakInside: "avoid",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "flex-start",
+                                    marginBottom: "4pt",
+                                  }}
+                                >
+                                  <div style={{ flex: "1" }}>
+                                    <h3
+                                      style={{
+                                        fontSize: "12pt",
+                                        fontWeight: "bold",
+                                        marginBottom: "2pt",
+                                        textTransform: "uppercase",
+                                      }}
+                                    >
+                                      {exp.position || "CARGO"}
+                                    </h3>
+                                    <h4
+                                      style={{
+                                        fontSize: "11pt",
+                                        fontWeight: "bold",
+                                        marginBottom: "2pt",
+                                      }}
+                                    >
+                                      {exp.company || "Empresa"}
+                                    </h4>
                                   </div>
-                                  <div className="text-right text-gray-500 text-sm bg-gray-100 px-3 py-1 rounded-full">
+                                  <div
+                                    style={{
+                                      textAlign: "right",
+                                      fontSize: "10pt",
+                                      fontWeight: "bold",
+                                      minWidth: "120px",
+                                    }}
+                                  >
                                     {exp.startDate && (
                                       <time>
                                         {new Date(exp.startDate + "-01").toLocaleDateString("pt-BR", {
-                                          month: "short",
+                                          month: "2-digit",
                                           year: "numeric",
                                         })}
                                         {" - "}
                                         {exp.current
-                                          ? "Atual"
+                                          ? "ATUAL"
                                           : exp.endDate
                                             ? new Date(exp.endDate + "-01").toLocaleDateString("pt-BR", {
-                                                month: "short",
+                                                month: "2-digit",
                                                 year: "numeric",
                                               })
-                                            : "Presente"}
+                                            : "ATUAL"}
                                       </time>
                                     )}
                                   </div>
                                 </div>
                                 {exp.description && (
-                                  <p className="text-gray-700 text-sm mt-2 leading-relaxed">{exp.description}</p>
+                                  <div
+                                    style={{
+                                      fontSize: "11pt",
+                                      textAlign: "justify",
+                                      marginTop: "4pt",
+                                      paddingLeft: "12pt",
+                                    }}
+                                  >
+                                    {exp.description.split("\n").map((line, i) => (
+                                      <p key={i} style={{ marginBottom: "4pt" }}>
+                                        • {line}
+                                      </p>
+                                    ))}
+                                  </div>
                                 )}
                               </article>
                             ))}
@@ -1106,83 +1239,84 @@ export default function ResumeBuilder() {
 
                     {/* Educação */}
                     {education.some((edu) => edu.institution || edu.degree) && (
-                      <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-4 border-l-4 border-orange-500 pl-3">
-                          EDUCAÇÃO
+                      <section style={{ marginBottom: "16pt" }}>
+                        <h2
+                          style={{
+                            fontSize: "14pt",
+                            fontWeight: "bold",
+                            marginBottom: "8pt",
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid #000",
+                            paddingBottom: "2pt",
+                          }}
+                        >
+                          FORMAÇÃO ACADÊMICA
                         </h2>
-                        <div className="space-y-4">
+                        <div>
                           {education
                             .filter((edu) => edu.institution || edu.degree)
-                            .map((edu) => (
-                              <article key={edu.id} className="border-l-2 border-gray-200 pl-4">
-                                <div className="flex justify-between items-start">
-                                  <div>
-                                    <h3 className="font-bold text-gray-900">
-                                      {edu.degree || "Grau"} {edu.field && `em ${edu.field}`}
+                            .map((edu, index) => (
+                              <article
+                                key={edu.id}
+                                style={{
+                                  marginBottom:
+                                    index < education.filter((e) => e.institution || e.degree).length - 1 ? "8pt" : "0",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "flex-start",
+                                  }}
+                                >
+                                  <div style={{ flex: "1" }}>
+                                    <h3
+                                      style={{
+                                        fontSize: "12pt",
+                                        fontWeight: "bold",
+                                        marginBottom: "2pt",
+                                      }}
+                                    >
+                                      {edu.degree || "GRAU"} {edu.field && `EM ${edu.field.toUpperCase()}`}
                                     </h3>
-                                    <h4 className="text-gray-600 font-medium">{edu.institution || "Instituição"}</h4>
+                                    <h4
+                                      style={{
+                                        fontSize: "11pt",
+                                        fontWeight: "normal",
+                                        fontStyle: "italic",
+                                      }}
+                                    >
+                                      {edu.institution || "Instituição"}
+                                    </h4>
                                   </div>
-                                  <div className="text-right text-gray-500 text-sm bg-gray-100 px-3 py-1 rounded-full">
+                                  <div
+                                    style={{
+                                      textAlign: "right",
+                                      fontSize: "10pt",
+                                      fontWeight: "bold",
+                                      minWidth: "120px",
+                                    }}
+                                  >
                                     {edu.startDate && (
                                       <time>
                                         {new Date(edu.startDate + "-01").toLocaleDateString("pt-BR", {
-                                          month: "short",
+                                          month: "2-digit",
                                           year: "numeric",
                                         })}
                                         {" - "}
                                         {edu.current
-                                          ? "Em andamento"
+                                          ? "EM ANDAMENTO"
                                           : edu.endDate
                                             ? new Date(edu.endDate + "-01").toLocaleDateString("pt-BR", {
-                                                month: "short",
+                                                month: "2-digit",
                                                 year: "numeric",
                                               })
-                                            : "Presente"}
+                                            : "EM ANDAMENTO"}
                                       </time>
                                     )}
                                   </div>
                                 </div>
-                              </article>
-                            ))}
-                        </div>
-                      </section>
-                    )}
-
-                    {/* Cursos Complementares */}
-                    {courses.some((course) => course.name || course.institution) && (
-                      <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-4 border-l-4 border-purple-500 pl-3">
-                          CURSOS COMPLEMENTARES
-                        </h2>
-                        <div className="space-y-4">
-                          {courses
-                            .filter((course) => course.name || course.institution)
-                            .map((course) => (
-                              <article key={course.id} className="border-l-2 border-gray-200 pl-4">
-                                <div className="flex justify-between items-start">
-                                  <div>
-                                    <h3 className="font-bold text-gray-900">{course.name || "Nome do Curso"}</h3>
-                                    <h4 className="text-gray-600 font-medium">{course.institution || "Instituição"}</h4>
-                                    {course.duration && (
-                                      <p className="text-gray-500 text-sm">Duração: {course.duration}</p>
-                                    )}
-                                  </div>
-                                  <div className="text-right text-gray-500 text-sm bg-gray-100 px-3 py-1 rounded-full">
-                                    {course.completionDate && (
-                                      <time>
-                                        {new Date(course.completionDate + "-01").toLocaleDateString("pt-BR", {
-                                          month: "short",
-                                          year: "numeric",
-                                        })}
-                                      </time>
-                                    )}
-                                  </div>
-                                </div>
-                                {course.certificate && (
-                                  <p className="text-blue-600 text-sm mt-2">
-                                    <strong>Certificado:</strong> {course.certificate}
-                                  </p>
-                                )}
                               </article>
                             ))}
                         </div>
@@ -1191,27 +1325,154 @@ export default function ResumeBuilder() {
 
                     {/* Habilidades */}
                     {skills.length > 0 && (
-                      <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-4 border-l-4 border-indigo-500 pl-3">
-                          HABILIDADES
+                      <section style={{ marginBottom: "16pt" }}>
+                        <h2
+                          style={{
+                            fontSize: "14pt",
+                            fontWeight: "bold",
+                            marginBottom: "6pt",
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid #000",
+                            paddingBottom: "2pt",
+                          }}
+                        >
+                          COMPETÊNCIAS TÉCNICAS
                         </h2>
-                        <div className="text-gray-700">{skills.join(" • ")}</div>
+                        <div
+                          style={{
+                            fontSize: "11pt",
+                            lineHeight: "1.6",
+                          }}
+                        >
+                          {skills.join(" • ")}
+                        </div>
+                      </section>
+                    )}
+
+                    {/* Cursos Complementares */}
+                    {courses.some((course) => course.name || course.institution) && (
+                      <section style={{ marginBottom: "16pt" }}>
+                        <h2
+                          style={{
+                            fontSize: "14pt",
+                            fontWeight: "bold",
+                            marginBottom: "8pt",
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid #000",
+                            paddingBottom: "2pt",
+                          }}
+                        >
+                          CURSOS E CERTIFICAÇÕES
+                        </h2>
+                        <div>
+                          {courses
+                            .filter((course) => course.name || course.institution)
+                            .map((course, index) => (
+                              <article
+                                key={course.id}
+                                style={{
+                                  marginBottom:
+                                    index < courses.filter((c) => c.name || c.institution).length - 1 ? "8pt" : "0",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "flex-start",
+                                  }}
+                                >
+                                  <div style={{ flex: "1" }}>
+                                    <h3
+                                      style={{
+                                        fontSize: "11pt",
+                                        fontWeight: "bold",
+                                        marginBottom: "2pt",
+                                      }}
+                                    >
+                                      {course.name || "Nome do Curso"}
+                                    </h3>
+                                    <h4
+                                      style={{
+                                        fontSize: "10pt",
+                                        fontWeight: "normal",
+                                        fontStyle: "italic",
+                                        marginBottom: "2pt",
+                                      }}
+                                    >
+                                      {course.institution || "Instituição"}
+                                    </h4>
+                                    {course.duration && (
+                                      <p
+                                        style={{
+                                          fontSize: "10pt",
+                                          margin: "0",
+                                        }}
+                                      >
+                                        Carga Horária: {course.duration}
+                                      </p>
+                                    )}
+                                  </div>
+                                  <div
+                                    style={{
+                                      textAlign: "right",
+                                      fontSize: "10pt",
+                                      fontWeight: "bold",
+                                      minWidth: "80px",
+                                    }}
+                                  >
+                                    {course.completionDate && (
+                                      <time>
+                                        {new Date(course.completionDate + "-01").toLocaleDateString("pt-BR", {
+                                          month: "2-digit",
+                                          year: "numeric",
+                                        })}
+                                      </time>
+                                    )}
+                                  </div>
+                                </div>
+                              </article>
+                            ))}
+                        </div>
                       </section>
                     )}
 
                     {/* Idiomas */}
                     {languages.some((lang) => lang.language || lang.level) && (
-                      <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-4 border-l-4 border-cyan-500 pl-3">
+                      <section style={{ marginBottom: "16pt" }}>
+                        <h2
+                          style={{
+                            fontSize: "14pt",
+                            fontWeight: "bold",
+                            marginBottom: "6pt",
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid #000",
+                            paddingBottom: "2pt",
+                          }}
+                        >
                           IDIOMAS
                         </h2>
-                        <div className="space-y-2">
+                        <div
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(2, 1fr)",
+                            gap: "8pt",
+                            fontSize: "11pt",
+                          }}
+                        >
                           {languages
                             .filter((lang) => lang.language || lang.level)
                             .map((language) => (
-                              <div key={language.id} className="flex justify-between items-center">
-                                <span className="font-medium text-gray-900">{language.language || "Idioma"}</span>
-                                <span className="text-gray-600">{language.level || "Nível"}</span>
+                              <div
+                                key={language.id}
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <span style={{ fontWeight: "bold" }}>{language.language || "Idioma"}:</span>
+                                <span>{language.level || "Nível"}</span>
                               </div>
                             ))}
                         </div>
@@ -1220,26 +1481,73 @@ export default function ResumeBuilder() {
 
                     {/* Projetos */}
                     {projects.some((proj) => proj.name || proj.description) && (
-                      <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-4 border-l-4 border-emerald-500 pl-3">
-                          PROJETOS
+                      <section style={{ marginBottom: "16pt" }}>
+                        <h2
+                          style={{
+                            fontSize: "14pt",
+                            fontWeight: "bold",
+                            marginBottom: "8pt",
+                            textTransform: "uppercase",
+                            borderBottom: "1px solid #000",
+                            paddingBottom: "2pt",
+                          }}
+                        >
+                          PROJETOS RELEVANTES
                         </h2>
-                        <div className="space-y-4">
+                        <div>
                           {projects
                             .filter((proj) => proj.name || proj.description)
-                            .map((project) => (
-                              <article key={project.id} className="border-l-2 border-gray-200 pl-4">
-                                <h3 className="font-bold text-gray-900 text-lg">{project.name || "Nome do Projeto"}</h3>
+                            .map((project, index) => (
+                              <article
+                                key={project.id}
+                                style={{
+                                  marginBottom:
+                                    index < projects.filter((p) => p.name || p.description).length - 1 ? "12pt" : "0",
+                                  pageBreakInside: "avoid",
+                                }}
+                              >
+                                <h3
+                                  style={{
+                                    fontSize: "12pt",
+                                    fontWeight: "bold",
+                                    marginBottom: "4pt",
+                                    textTransform: "uppercase",
+                                  }}
+                                >
+                                  {project.name || "Nome do Projeto"}
+                                </h3>
                                 {project.description && (
-                                  <p className="text-gray-700 text-sm mt-2 leading-relaxed">{project.description}</p>
+                                  <p
+                                    style={{
+                                      fontSize: "11pt",
+                                      textAlign: "justify",
+                                      marginBottom: "4pt",
+                                      paddingLeft: "12pt",
+                                    }}
+                                  >
+                                    {project.description}
+                                  </p>
                                 )}
                                 {project.technologies && (
-                                  <p className="text-gray-600 text-sm mt-2">
+                                  <p
+                                    style={{
+                                      fontSize: "10pt",
+                                      marginBottom: "2pt",
+                                      paddingLeft: "12pt",
+                                    }}
+                                  >
                                     <strong>Tecnologias:</strong> {project.technologies}
                                   </p>
                                 )}
                                 {project.link && (
-                                  <p className="text-blue-600 text-sm mt-2">
+                                  <p
+                                    style={{
+                                      fontSize: "10pt",
+                                      marginBottom: "0",
+                                      paddingLeft: "12pt",
+                                      wordBreak: "break-all",
+                                    }}
+                                  >
                                     <strong>Link:</strong> {project.link}
                                   </p>
                                 )}
