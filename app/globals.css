@@ -13,11 +13,11 @@
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
@@ -68,17 +68,10 @@
   }
 }
 
-/* Estilos específicos para impressão - ATS Friendly */
+/* Print styles for resume */
 @media print {
   .no-print {
     display: none !important;
-  }
-
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: white !important;
-    color: black !important;
   }
 
   .resume-printable-area {
@@ -93,56 +86,208 @@
     font-size: 12pt !important;
     line-height: 1.4 !important;
     max-width: none !important;
-    min-height: none !important;
+    width: 100% !important;
+    height: auto !important;
   }
 
-  /* Garantir que todos os estilos inline sejam preservados */
-  .resume-printable-area * {
-    color: black !important;
-    background: transparent !important;
-  }
-
-  /* Configurações de página */
   @page {
     margin: 0.5in;
     size: A4;
   }
 
-  /* Garantir quebras de página adequadas */
-  .resume-printable-area section {
-    page-break-inside: avoid;
+  body {
+    background: white !important;
+    color: black !important;
   }
 
-  .resume-printable-area article {
-    page-break-inside: avoid;
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  /* Garantir que o texto seja selecionável */
-  .resume-printable-area * {
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-    user-select: text !important;
-  }
-
-  /* Remover elementos que podem confundir ATS */
-  .resume-printable-area .bg-gradient-to-r,
-  .resume-printable-area .bg-gray-100,
-  .resume-printable-area .border-l-4,
-  .resume-printable-area .border-l-2,
-  .resume-printable-area .rounded-full,
-  .resume-printable-area .rounded-lg {
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
+  /* Hide all UI elements during print */
+  .bg-gradient-to-br,
+  .shadow-xl,
+  .shadow-2xl,
+  .backdrop-blur-sm,
+  .hover\:shadow-2xl,
+  .transition-all,
+  .duration-300 {
+    background: white !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
   }
 }
 
-/* Estilos para melhor acessibilidade */
+/* Responsive improvements */
+@media (max-width: 1024px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .grid.lg\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .lg\:sticky {
+    position: static;
+  }
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Focus styles for accessibility */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Gradient text */
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.text-transparent {
+  color: transparent;
+}
+
+/* Card hover effects */
+.hover\:shadow-2xl:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Button animations */
+.transform {
+  transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .text-5xl {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .text-xl {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .p-8 {
+    padding: 1rem;
+  }
+
+  .gap-8 {
+    gap: 1rem;
+  }
+
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1rem;
+  }
+}
+
+/* Print page breaks */
+@media print {
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}
+
+/* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  .transition-all,
+  .duration-300,
+  .animate-spin {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .border-gray-200 {
+    border-color: #000;
+  }
+
+  .text-gray-600 {
+    color: #000;
+  }
+
+  .bg-gradient-to-r {
+    background: #000;
+    color: #fff;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .bg-white {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+
+  .text-gray-800 {
+    color: #f9fafb;
+  }
+
+  .border-gray-200 {
+    border-color: #374151;
   }
 }

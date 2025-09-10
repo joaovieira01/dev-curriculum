@@ -1,40 +1,12 @@
 {
-  "name": "automated-cv-website",
-  "version": "1.0.0",
+  "name": "resume-builder",
+  "version": "0.1.0",
   "private": true,
-  "description": "Uma aplicação web moderna para criação de currículos profissionais com preview em tempo real e exportação PDF otimizada para ATS",
-  "keywords": [
-    "curriculum",
-    "resume",
-    "cv",
-    "pdf",
-    "ats",
-    "professional",
-    "nextjs",
-    "typescript",
-    "tailwind",
-    "shadcn"
-  ],
-  "homepage": "https://dev-curriculum.vercel.app",
-  "bugs": {
-    "url": "https://github.com/joaovieira01/automated-cv-website/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joaovieira01/automated-cv-website.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "João Vieira",
-    "email": "joao.vieira@example.com",
-    "url": "https://github.com/joaovieira01"
-  },
   "scripts": {
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start",
-    "type-check": "tsc --noEmit"
+    "start": "next start"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "latest",
@@ -67,15 +39,16 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "latest",
-    "date-fns": "^4.1.0",
+    "docx": "latest",
     "embla-carousel-react": "latest",
+    "file-saver": "latest",
     "input-otp": "latest",
     "lucide-react": "^0.454.0",
-    "next": "15.2.4",
+    "next": "14.2.16",
     "next-themes": "latest",
-    "react": "^19",
+    "react": "^18",
     "react-day-picker": "latest",
-    "react-dom": "^19",
+    "react-dom": "^18",
     "react-hook-form": "latest",
     "react-resizable-panels": "latest",
     "recharts": "latest",
@@ -85,17 +58,15 @@
     "vaul": "latest"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9.17.0",
-    "eslint-config-next": "15.1.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.0",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
   }
 }
