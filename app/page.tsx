@@ -23,6 +23,7 @@ import {
   FolderOpen,
   FileText,
   Smartphone,
+  CheckCircle,
 } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
@@ -829,7 +830,21 @@ export default function ResumeBuilder() {
       const blob = new Blob([buffer], {
         type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       })
-      saveAs(blob, fileName)
+
+      // Usar saveAs corretamente
+      if (typeof saveAs === "function") {
+        saveAs(blob, fileName)
+      } else {
+        // Fallback manual se saveAs não funcionar
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement("a")
+        a.href = url
+        a.download = fileName
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      }
     } catch (error) {
       console.error("Erro ao gerar DOCX:", error)
       alert("Erro ao gerar arquivo DOCX. Tente novamente.")
@@ -858,6 +873,7 @@ export default function ResumeBuilder() {
         color: "black",
         maxWidth: "8.5in",
         minHeight: "11in",
+        backgroundColor: "white",
       }}
     >
       {/* Cabeçalho */}
@@ -869,6 +885,7 @@ export default function ResumeBuilder() {
             marginBottom: "4pt",
             textTransform: "uppercase",
             letterSpacing: "1px",
+            color: "black",
           }}
         >
           {personalInfo.fullName || "SEU NOME COMPLETO"}
@@ -879,6 +896,7 @@ export default function ResumeBuilder() {
             fontWeight: "normal",
             marginBottom: "8pt",
             fontStyle: "italic",
+            color: "black",
           }}
         >
           {personalInfo.title || "Título Profissional"}
@@ -893,6 +911,7 @@ export default function ResumeBuilder() {
             gap: "20px",
             fontSize: "11pt",
             marginTop: "8pt",
+            color: "black",
           }}
         >
           {personalInfo.email && (
@@ -929,6 +948,7 @@ export default function ResumeBuilder() {
               textTransform: "uppercase",
               borderBottom: "1px solid #000",
               paddingBottom: "2pt",
+              color: "black",
             }}
           >
             RESUMO PROFISSIONAL
@@ -938,6 +958,7 @@ export default function ResumeBuilder() {
               textAlign: "justify",
               marginBottom: "0",
               fontSize: "11pt",
+              color: "black",
             }}
           >
             {personalInfo.summary}
@@ -956,6 +977,7 @@ export default function ResumeBuilder() {
               textTransform: "uppercase",
               borderBottom: "1px solid #000",
               paddingBottom: "2pt",
+              color: "black",
             }}
           >
             EXPERIÊNCIA PROFISSIONAL
@@ -986,6 +1008,7 @@ export default function ResumeBuilder() {
                           fontWeight: "bold",
                           marginBottom: "2pt",
                           textTransform: "uppercase",
+                          color: "black",
                         }}
                       >
                         {exp.position || "CARGO"}
@@ -995,6 +1018,7 @@ export default function ResumeBuilder() {
                           fontSize: "11pt",
                           fontWeight: "bold",
                           marginBottom: "2pt",
+                          color: "black",
                         }}
                       >
                         {exp.company || "Empresa"}
@@ -1006,6 +1030,7 @@ export default function ResumeBuilder() {
                         fontSize: "10pt",
                         fontWeight: "bold",
                         minWidth: "120px",
+                        color: "black",
                       }}
                     >
                       {exp.startDate && (
@@ -1034,10 +1059,11 @@ export default function ResumeBuilder() {
                         textAlign: "justify",
                         marginTop: "4pt",
                         paddingLeft: "12pt",
+                        color: "black",
                       }}
                     >
                       {exp.description.split("\n").map((line, i) => (
-                        <p key={i} style={{ marginBottom: "4pt" }}>
+                        <p key={i} style={{ marginBottom: "4pt", color: "black" }}>
                           • {line}
                         </p>
                       ))}
@@ -1060,6 +1086,7 @@ export default function ResumeBuilder() {
               textTransform: "uppercase",
               borderBottom: "1px solid #000",
               paddingBottom: "2pt",
+              color: "black",
             }}
           >
             FORMAÇÃO ACADÊMICA
@@ -1087,6 +1114,7 @@ export default function ResumeBuilder() {
                           fontSize: "12pt",
                           fontWeight: "bold",
                           marginBottom: "2pt",
+                          color: "black",
                         }}
                       >
                         {edu.degree || "GRAU"} {edu.field && `EM ${edu.field.toUpperCase()}`}
@@ -1096,6 +1124,7 @@ export default function ResumeBuilder() {
                           fontSize: "11pt",
                           fontWeight: "normal",
                           fontStyle: "italic",
+                          color: "black",
                         }}
                       >
                         {edu.institution || "Instituição"}
@@ -1107,6 +1136,7 @@ export default function ResumeBuilder() {
                         fontSize: "10pt",
                         fontWeight: "bold",
                         minWidth: "120px",
+                        color: "black",
                       }}
                     >
                       {edu.startDate && (
@@ -1145,6 +1175,7 @@ export default function ResumeBuilder() {
               textTransform: "uppercase",
               borderBottom: "1px solid #000",
               paddingBottom: "2pt",
+              color: "black",
             }}
           >
             COMPETÊNCIAS TÉCNICAS
@@ -1153,6 +1184,7 @@ export default function ResumeBuilder() {
             style={{
               fontSize: "11pt",
               lineHeight: "1.6",
+              color: "black",
             }}
           >
             {skills.join(" • ")}
@@ -1171,6 +1203,7 @@ export default function ResumeBuilder() {
               textTransform: "uppercase",
               borderBottom: "1px solid #000",
               paddingBottom: "2pt",
+              color: "black",
             }}
           >
             CURSOS E CERTIFICAÇÕES
@@ -1198,6 +1231,7 @@ export default function ResumeBuilder() {
                           fontSize: "11pt",
                           fontWeight: "bold",
                           marginBottom: "2pt",
+                          color: "black",
                         }}
                       >
                         {course.name || "Nome do Curso"}
@@ -1208,6 +1242,7 @@ export default function ResumeBuilder() {
                           fontWeight: "normal",
                           fontStyle: "italic",
                           marginBottom: "2pt",
+                          color: "black",
                         }}
                       >
                         {course.institution || "Instituição"}
@@ -1217,6 +1252,7 @@ export default function ResumeBuilder() {
                           style={{
                             fontSize: "10pt",
                             margin: "0",
+                            color: "black",
                           }}
                         >
                           Carga Horária: {course.duration}
@@ -1229,6 +1265,7 @@ export default function ResumeBuilder() {
                         fontSize: "10pt",
                         fontWeight: "bold",
                         minWidth: "80px",
+                        color: "black",
                       }}
                     >
                       {course.completionDate && (
@@ -1258,6 +1295,7 @@ export default function ResumeBuilder() {
               textTransform: "uppercase",
               borderBottom: "1px solid #000",
               paddingBottom: "2pt",
+              color: "black",
             }}
           >
             IDIOMAS
@@ -1268,6 +1306,7 @@ export default function ResumeBuilder() {
               gridTemplateColumns: "repeat(2, 1fr)",
               gap: "8pt",
               fontSize: "11pt",
+              color: "black",
             }}
           >
             {languages
@@ -1281,8 +1320,8 @@ export default function ResumeBuilder() {
                     alignItems: "center",
                   }}
                 >
-                  <span style={{ fontWeight: "bold" }}>{language.language || "Idioma"}:</span>
-                  <span>{language.level || "Nível"}</span>
+                  <span style={{ fontWeight: "bold", color: "black" }}>{language.language || "Idioma"}:</span>
+                  <span style={{ color: "black" }}>{language.level || "Nível"}</span>
                 </div>
               ))}
           </div>
@@ -1300,6 +1339,7 @@ export default function ResumeBuilder() {
               textTransform: "uppercase",
               borderBottom: "1px solid #000",
               paddingBottom: "2pt",
+              color: "black",
             }}
           >
             PROJETOS RELEVANTES
@@ -1321,6 +1361,7 @@ export default function ResumeBuilder() {
                       fontWeight: "bold",
                       marginBottom: "4pt",
                       textTransform: "uppercase",
+                      color: "black",
                     }}
                   >
                     {project.name || "Nome do Projeto"}
@@ -1332,6 +1373,7 @@ export default function ResumeBuilder() {
                         textAlign: "justify",
                         marginBottom: "4pt",
                         paddingLeft: "12pt",
+                        color: "black",
                       }}
                     >
                       {project.description}
@@ -1343,6 +1385,7 @@ export default function ResumeBuilder() {
                         fontSize: "10pt",
                         marginBottom: "2pt",
                         paddingLeft: "12pt",
+                        color: "black",
                       }}
                     >
                       <strong>Tecnologias:</strong> {project.technologies}
@@ -1355,6 +1398,7 @@ export default function ResumeBuilder() {
                         marginBottom: "0",
                         paddingLeft: "12pt",
                         wordBreak: "break-all",
+                        color: "black",
                       }}
                     >
                       <strong>Link:</strong> {project.link}
@@ -1389,8 +1433,8 @@ export default function ResumeBuilder() {
           </div>
         </div>
 
-        {/* Controles */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6 no-print">
+        {/* Controle de Preview */}
+        <div className="flex justify-center mb-6 no-print">
           <Button
             onClick={handleToggleView}
             className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
@@ -1408,25 +1452,6 @@ export default function ResumeBuilder() {
               </>
             )}
           </Button>
-
-          <div className="flex gap-2">
-            <Button
-              onClick={handleDownloadPdf}
-              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-              size="lg"
-            >
-              <Download className="h-5 w-5 mr-2" />
-              PDF
-            </Button>
-            <Button
-              onClick={handleDownloadDocx}
-              className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-              size="lg"
-            >
-              <FileText className="h-5 w-5 mr-2" />
-              DOCX
-            </Button>
-          </div>
         </div>
 
         {/* Layout Responsivo */}
@@ -2078,27 +2103,9 @@ export default function ResumeBuilder() {
           {/* Preview do Currículo */}
           {((isMobile && mobileView === "preview") || (!isMobile && showPreview)) && (
             <div className={`${isMobile ? "mt-8" : "lg:sticky lg:top-4"}`}>
-              <Card className="h-fit border-0 shadow-2xl bg-white/90 backdrop-blur-sm">
+              <Card className="h-fit border-0 shadow-2xl bg-white backdrop-blur-sm">
                 <CardHeader className="flex flex-row items-center justify-between no-print bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-t-lg">
                   <CardTitle className="text-xl">Preview do Currículo</CardTitle>
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      onClick={handleDownloadPdf}
-                      className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      PDF
-                    </Button>
-                    <Button
-                      size="sm"
-                      onClick={handleDownloadDocx}
-                      className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      <FileText className="h-4 w-4 mr-2" />
-                      DOCX
-                    </Button>
-                  </div>
                 </CardHeader>
                 <CardContent className="print:p-0 p-0">
                   <ResumeContent />
@@ -2106,6 +2113,48 @@ export default function ResumeBuilder() {
               </Card>
             </div>
           )}
+        </div>
+
+        {/* Seção de Finalização */}
+        <div className="mt-16 mb-8 no-print">
+          <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm">
+            <CardHeader className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-t-lg text-center">
+              <CardTitle className="flex items-center justify-center gap-3 text-2xl">
+                <CheckCircle className="h-8 w-8" />
+                Finalizar Currículo
+              </CardTitle>
+              <CardDescription className="text-green-100 text-lg">
+                Seu currículo está pronto! Escolha o formato para download
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-8">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <Button
+                  onClick={handleDownloadPdf}
+                  className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg"
+                  size="lg"
+                >
+                  <Download className="h-6 w-6 mr-3" />
+                  Baixar PDF
+                </Button>
+                <Button
+                  onClick={handleDownloadDocx}
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg"
+                  size="lg"
+                >
+                  <FileText className="h-6 w-6 mr-3" />
+                  Baixar DOCX
+                </Button>
+              </div>
+              <div className="mt-6 text-center text-sm text-gray-600">
+                <p>
+                  <strong>PDF:</strong> Ideal para envio por email e impressão
+                  <br />
+                  <strong>DOCX:</strong> Compatível com Word, Google Docs e outros editores
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

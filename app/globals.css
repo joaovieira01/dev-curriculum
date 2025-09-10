@@ -106,17 +106,10 @@
     margin: 0 !important;
   }
 
-  /* Hide all UI elements during print */
-  .bg-gradient-to-br,
-  .shadow-xl,
-  .shadow-2xl,
-  .backdrop-blur-sm,
-  .hover\:shadow-2xl,
-  .transition-all,
-  .duration-300 {
+  /* Force white background and black text */
+  * {
     background: white !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
+    color: black !important;
   }
 }
 
@@ -276,18 +269,11 @@ button:focus {
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .bg-white {
-    background-color: #1f2937;
-    color: #f9fafb;
-  }
+/* Ensure white background for resume content */
+.resume-printable-area {
+  background-color: white !important;
+}
 
-  .text-gray-800 {
-    color: #f9fafb;
-  }
-
-  .border-gray-200 {
-    border-color: #374151;
-  }
+.resume-printable-area * {
+  color: black !important;
 }
