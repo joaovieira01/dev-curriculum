@@ -168,7 +168,7 @@ export default function ResumeBuilder() {
 
   // Atualizar o título da página dinamicamente
   useEffect(() => {
-    const title = personalInfo.fullName ? `Currículo ${personalInfo.fullName}` : "Criador de Currículos"
+    const title = personalInfo.fullName ? `Currículo ${personalInfo.fullName}` : "Groven"
     document.title = title
   }, [personalInfo.fullName])
 
@@ -1421,7 +1421,7 @@ export default function ResumeBuilder() {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl blur-3xl opacity-20"></div>
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
               <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3">
-                Criador de Currículos
+                Groven
               </h1>
               <p className="text-xl text-gray-600 font-medium">
                 Crie seu currículo profissional de forma rápida e fácil
